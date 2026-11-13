@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f2ea" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/gryc-logo-96.png" />
+    <link rel="apple-touch-icon" href="/gryc-logo-192.png" />
+    <!-- every photo is still served by Wix's image CDN, at the size each spot needs -->
+    <link rel="preconnect" href="https://static.wixstatic.com" crossorigin />
+
+    <!-- the title, description and social tags are different on every page,
+         so they aren't written here. each page renders a <Seo />, and
+         scripts/prerender.ts writes the result into this spot at build time -->
+    <!--page-head-->
+  </head>
+  <body>
+    <!-- React draws everything in this div. after `npm run build` it already arrives
+         filled in (scripts/prerender.ts), so search engines and link previews see real HTML -->
+    <div id="root"><!--page-body--></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

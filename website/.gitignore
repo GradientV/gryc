@@ -1,0 +1,21 @@
+# dependencies and build output
+node_modules
+dist
+dist-server
+
+# local tooling / editor config
+.vercel
+
+# environment
+.env
+.env.*
+!.env.example
+
+# OS cruft
+.DS_Store
+Thumbs.db
+*.local
+
+# Notes, research and AI agent files: kept on this computer, never pushed
+AGENTS.md
+RESEARCH.md

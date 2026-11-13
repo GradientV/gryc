@@ -1,0 +1,22 @@
+# Dependencies, build output, secrets and OS files
+node_modules/
+dist/
+.vercel
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Notes, research and AI agent files: kept on this computer, never pushed
+AGENTS.md
+AGENTS-TEMPLATE/
+RESEARCH.md
+.claude
+
+# Local-only material: the client's paperwork photos (participant lists, timesheets,
+# applications) and the GradientV pitch deck. Never push.
+/context/
+/Context/
+/gryc_context*/
+/presentation/

@@ -1,0 +1,177 @@
+@import 'tailwindcss';
+
+/*
+ * GRYC design tokens.
+ * Blue comes from the old site: navy-600 is its royal blue (#0D5EBA), used for buttons and
+ * links. The deep end of the scale (900/950) is the color of the dark bands, where the
+ * GRYC's own photos sit faded into the blue. Warm cream paper and blue-black ink do the
+ * rest, so the photos carry the color. Sun is the yellow in the kids' art, for crayon
+ * marks only. Small square corners and thin rules: no pills, no soft shadows.
+ */
+@theme {
+    --font-display: 'Newsreader Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    --font-sans: 'Albert Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    --color-navy-50: #eef3fb;
+    --color-navy-100: #dce6f6;
+    --color-navy-200: #b7ccec;
+    --color-navy-300: #8aabdf;
+    --color-navy-400: #5584cc;
+    --color-navy-500: #3a78cf;
+    --color-navy-600: #0d5eba;
+    --color-navy-700: #0a4c99;
+    --color-navy-800: #0b3d7a;
+    --color-navy-900: #0b2b5c;
+    --color-navy-950: #081f45;
+
+    --color-sun-50: #fffbea;
+    --color-sun-100: #fff3c4;
+    --color-sun-300: #ffdd55;
+    --color-sun-400: #ffcc00;
+    --color-sun-700: #8a6d00;
+
+    --color-paper: #f6f2ea;
+    --color-paper-2: #ede6d8;
+    --color-line: #dad1c0;
+    --color-line-2: #e7e0d2;
+    --color-ink: #121826;
+    --color-ink-2: #394150;
+    --color-ink-3: #5d6574;
+
+    --color-alert: #b3261e;
+    --color-alert-50: #fdf0ee;
+
+    --radius-ui: 2px;
+}
+
+@layer base {
+    html {
+        -webkit-text-size-adjust: 100%;
+        scroll-padding-top: 1.5rem;
+    }
+
+    body {
+        @apply bg-paper font-sans text-ink antialiased;
+        font-size: 1.0625rem;
+        line-height: 1.6;
+        text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+        background: var(--color-sun-300);
+        color: var(--color-ink);
+    }
+
+    :focus-visible {
+        outline: 3px solid var(--color-navy-500);
+        outline-offset: 2px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: var(--font-display);
+        font-weight: 500;
+        letter-spacing: -0.012em;
+        line-height: 1.06;
+        text-wrap: balance;
+        color: var(--color-ink);
+    }
+
+    /* the dark bands: headings in cream, focus ring in sun so it shows on the blue */
+    .on-dark :is(h1, h2, h3, h4) {
+        color: var(--color-paper);
+    }
+    .on-dark :focus-visible {
+        outline-color: var(--color-sun-300);
+    }
+
+    p {
+        text-wrap: pretty;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+/* the headline voice: Newsreader, a narrow newspaper serif that sharpens at large sizes
+   (its optical-size axis follows the font size on its own) */
+@utility display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.018em;
+    line-height: 1.02;
+}
+
+/* small labels over facts ("Grades", "Hours"), spaced capitals like the old site's headings */
+@utility label {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    .on-dark & {
+        color: color-mix(in srgb, white 62%, transparent);
+    }
+}
+
+/* text links inside running copy */
+@utility link {
+    color: var(--color-navy-600);
+    font-weight: 600;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--color-navy-600) 40%, transparent);
+    &:hover {
+        text-decoration-color: currentColor;
+    }
+    .on-dark & {
+        color: white;
+        text-decoration-color: color-mix(in srgb, white 45%, transparent);
+    }
+    .on-dark &:hover {
+        color: var(--color-sun-300);
+        text-decoration-color: currentColor;
+    }
+}
+
+/* the content column on long pages */
+@utility prose-gryc {
+    max-width: 44rem;
+    color: var(--color-ink-2);
+    & > * + * {
+        margin-top: 1.05em;
+    }
+    & ul {
+        list-style: disc;
+        padding-left: 1.25rem;
+    }
+    & li + li {
+        margin-top: 0.35em;
+    }
+    & li::marker {
+        color: var(--color-navy-400);
+    }
+}
+
+/* a full-width row that fills the 1240px column with gutters */
+@utility shell {
+    width: 100%;
+    max-width: 77.5rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    @media (min-width: 40rem) {
+        padding-inline: 1.5rem;
+    }
+}
